@@ -1,0 +1,395 @@
+{
+	"id": "48f49474-7c05-458f-bbe7-07e61dc6f4d4",
+	"name": "SPMR_MyWorld_V2.3",
+	"allTests": [],
+	"timestamp": "2018-07-23T10:15:22.983Z",
+	"collection_id": "ea79e896-9b21-4412-8531-f5b7a8da0c7f",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "adfd7554-b794-4bf6-b94a-447a61f4afba",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "ea79e896-9b21-4412-8531-f5b7a8da0c7f",
+		"name": "SPMR_MyWorld_V2.3",
+		"description": "",
+		"auth": null,
+		"events": [
+			{
+				"listen": "prerequest",
+				"script": {
+					"id": "db112a9b-17bd-444e-b145-df2301c9f5ee",
+					"type": "text/javascript",
+					"exec": [
+						""
+					]
+				}
+			},
+			{
+				"listen": "test",
+				"script": {
+					"id": "5601c3b1-772d-4391-869b-8d25ca799d86",
+					"type": "text/javascript",
+					"exec": [
+						"pm.test(\"response is ok\",function(){",
+						"    pm.response.to.have.status(200);",
+						"});",
+						"",
+						"pm.test(\"response time is below 3000ms\",function(){",
+						"    pm.expect(pm.response.responseTime).to.be.below(3000);",
+						"});"
+					]
+				}
+			}
+		],
+		"variables": [],
+		"order": [],
+		"folders_order": [
+			"69f8ed76-a0e9-41ef-9329-7134537c462f"
+		],
+		"owner": "4783434",
+		"permissions": {},
+		"favorite": false,
+		"shared": false,
+		"type": "collection",
+		"depth": 0
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"name": "Get All Attendees V2.3",
+			"id": "eb27fda1-ce09-4b7d-a180-76de3ff4b4a5",
+			"url": "http://s2-qa-mobile-2:10300/salesedge/api/v2.3/vmworld/attendees?salespersonId=bshirk@vmware.com.vmw",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"tests": {
+				"name": "response is ok",
+				"status": "fail",
+				"response time is below 3000ms": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 0,
+					"fail": 1
+				},
+				"response time is below 3000ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"661"
+			],
+			"allTests": [
+				{
+					"response is ok": false,
+					"response time is below 3000ms": true
+				}
+			],
+			"time": "661",
+			"totalRequestTime": "661",
+			"iterationResults": {}
+		},
+		{
+			"name": "Get Attendees by AcountId V2.3",
+			"id": "de376f71-8a87-4d02-8fa4-aa5ae5eec155",
+			"url": "http://s2-qa-mobile-2:10300/salesedge/api/v2.3/vmworld/account/attendees?salespersonId=bshirk@vmware.com.vmw&accountId=0018000001JLfKpAAL",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"tests": {
+				"name": "response is ok",
+				"status": "fail",
+				"response time is below 3000ms": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 0,
+					"fail": 1
+				},
+				"response time is below 3000ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"776"
+			],
+			"allTests": [
+				{
+					"response is ok": false,
+					"response time is below 3000ms": true
+				}
+			],
+			"time": "776",
+			"totalRequestTime": "776",
+			"iterationResults": {}
+		},
+		{
+			"name": "Get Attendee Details V2.3",
+			"id": "521aedb6-961b-4327-ab03-bc611e95336a",
+			"url": "http://s2-qa-mobile-2:10300/salesedge/api/v2.3/vmworld/attendees/details?salespersonId=aau@commvault.com&accountId=0018000001JLfKpAAL&salesManagerId=bshirk@vmware.com.vmw",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"tests": {
+				"name": "response is ok",
+				"status": "fail",
+				"response time is below 3000ms": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 0,
+					"fail": 1
+				},
+				"response time is below 3000ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"646"
+			],
+			"allTests": [
+				{
+					"response is ok": false,
+					"response time is below 3000ms": true
+				}
+			],
+			"time": "646",
+			"totalRequestTime": "646",
+			"iterationResults": {}
+		},
+		{
+			"name": "Get Attendee Count V2.3",
+			"id": "01379b53-8548-4d31-8cdb-81660c6cd057",
+			"url": "http://s2-qa-mobile-2:10300/salesedge/api/v2.3/vmworld?salespersonId=bshirk@vmware.com.vmw",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"tests": {
+				"name": "response is ok",
+				"status": "fail",
+				"response time is below 3000ms": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 0,
+					"fail": 1
+				},
+				"response time is below 3000ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"672"
+			],
+			"allTests": [
+				{
+					"response is ok": false,
+					"response time is below 3000ms": true
+				}
+			],
+			"time": "672",
+			"totalRequestTime": "672",
+			"iterationResults": {}
+		},
+		{
+			"name": "Attendee Search V2.3",
+			"id": "f70b40bd-030d-4f7b-bffd-4236e1143690",
+			"url": "http://s2-qa-mobile-2:10300/salesedge/api/v2.3/vmworld/attendees/search?salespersonId=bshirk@vmware.com.vmw&searchQuery=bob",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "response is ok",
+				"status": "pass",
+				"response time is below 3000ms": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response time is below 3000ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"1787"
+			],
+			"allTests": [
+				{
+					"response is ok": true,
+					"response time is below 3000ms": true
+				}
+			],
+			"time": "1787",
+			"totalRequestTime": "1787",
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 6,
+	"totalFail": 4,
+	"totalTime": 4542,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "Get All Attendees V2.3",
+			"id": "eb27fda1-ce09-4b7d-a180-76de3ff4b4a5",
+			"url": "http://s2-qa-mobile-2:10300/salesedge/api/v2.3/vmworld/attendees?salespersonId=bshirk@vmware.com.vmw",
+			"time": "2018-07-23T10:15:22.983Z",
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 0,
+					"fail": 1
+				},
+				"response time is below 3000ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Get Attendees by AcountId V2.3",
+			"id": "de376f71-8a87-4d02-8fa4-aa5ae5eec155",
+			"url": "http://s2-qa-mobile-2:10300/salesedge/api/v2.3/vmworld/account/attendees?salespersonId=bshirk@vmware.com.vmw&accountId=0018000001JLfKpAAL",
+			"time": "2018-07-23T10:15:22.983Z",
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 0,
+					"fail": 1
+				},
+				"response time is below 3000ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Get Attendee Details V2.3",
+			"id": "521aedb6-961b-4327-ab03-bc611e95336a",
+			"url": "http://s2-qa-mobile-2:10300/salesedge/api/v2.3/vmworld/attendees/details?salespersonId=aau@commvault.com&accountId=0018000001JLfKpAAL&salesManagerId=bshirk@vmware.com.vmw",
+			"time": "2018-07-23T10:15:22.983Z",
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 0,
+					"fail": 1
+				},
+				"response time is below 3000ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Get Attendee Count V2.3",
+			"id": "01379b53-8548-4d31-8cdb-81660c6cd057",
+			"url": "http://s2-qa-mobile-2:10300/salesedge/api/v2.3/vmworld?salespersonId=bshirk@vmware.com.vmw",
+			"time": "2018-07-23T10:15:22.983Z",
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 0,
+					"fail": 1
+				},
+				"response time is below 3000ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Attendee Search V2.3",
+			"id": "f70b40bd-030d-4f7b-bffd-4236e1143690",
+			"url": "http://s2-qa-mobile-2:10300/salesedge/api/v2.3/vmworld/attendees/search?salespersonId=bshirk@vmware.com.vmw&searchQuery=bob",
+			"time": "2018-07-23T10:15:22.983Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response time is below 3000ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		}
+	],
+	"synced": false
+}
