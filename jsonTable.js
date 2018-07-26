@@ -16,8 +16,10 @@ function readJSON(location) {
 var ourReportData =(location)=>( {
     'reportName': readJSON(location).name,
     'reportCollectionName': readJSON(location).collection.name,
+    'reportTime':readJSON(location).timestamp,
     'results': readJSON(location).results.map(obj => ({
         'apiName': obj.name,
+        'apiURL':obj.url,
         'resCode': obj.responseCode.code,
         'resName': obj.responseCode.name,
         'resTime': obj.time,
@@ -26,7 +28,18 @@ var ourReportData =(location)=>( {
     }))
 })
 
-console.log(ourReportData('/Users/mindstix/Desktop/SPMR_MyWorld_V2.3.postman_test_run.json'));
+// console.log(ourReportData('/Users/mindstix/Desktop/SPMR_MyWorld_V2.3.postman_test_run.json'));
+// var inputLocation = '/Users/mindstix/Desktop/\[Updated\]\ VMWorld.postman_test_run.json';
+// var outputLocation = '/Users/mindstix/Desktop/output/output.json';
+
+var inputLocation = process.argv[2];
+var outputLocation = process.argv[3];
+
+
+// fs.createWriteStream(outputLocation);
+var customData = ourReportData(inputLocation);
+var JSONOutput = fs.writeFileSync(outputLocation, JSON.stringify(customData));
+console.log('Custom Report is at : '+outputLocation);
 
 // var jsonData = function (location) {
 //     fs.readFile(location, (err, data) => {
