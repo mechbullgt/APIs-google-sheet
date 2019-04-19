@@ -1,2 +1,0 @@
-https://stackoverflow.com/questions/1290131/how-to-create-an-array-of-object-literals-in-a-loop
-http://jsonpath.com/
