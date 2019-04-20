@@ -4,7 +4,7 @@ const {google} = require('googleapis');
 var sheets = google.sheets('v4');
 const fs = require('fs');
 
-// Check why is this not working, meanwhile using require to load the secrets file.
+// Check why is this not working, meanwhile using require() to load the secrets file.
 function readSecrets(){
     let reqSecrets;
     fs.readFile('topsecrets','utf8',(err,data)=>{
