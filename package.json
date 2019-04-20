@@ -1,0 +1,22 @@
+{
+  "name": "apis-google-sheet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mechbullgt/APIs-google-sheet.git"
+  },
+  "author": "Maqbool Ansari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mechbullgt/APIs-google-sheet/issues"
+  },
+  "homepage": "https://github.com/mechbullgt/APIs-google-sheet#readme",
+  "dependencies": {
+    "googleapis": "^27.0.0"
+  }
+}
