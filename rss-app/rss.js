@@ -20,7 +20,7 @@ function prepareReturnRequest(){
     const requiredSecrets = require('./topsecrets.json');
     if(isEmpty(!requiredSecrets)){
         try{
-            const {sId,sRange,sValueRenderOption,sDateTimeRenderOption,authClient } = requiredSecrets;
+            const {sId,sRange,sValueRenderOption,sDateTimeRenderOption,sAPIKey } = requiredSecrets;
             let request = {
                 // The ID of the spreadsheet to retrieve data from.
                 spreadsheetId: sId,  // TODO: Update placeholder value.
@@ -37,7 +37,7 @@ function prepareReturnRequest(){
                 // FORMATTED_VALUE.
                 // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
                 dateTimeRenderOption: sDateTimeRenderOption,  // TODO: Update placeholder value.
-                auth: authClient,
+                key: sAPIKey,
               };
               console.log("Request Body:", request);
               return request;
@@ -76,7 +76,8 @@ let request = prepareReturnRequest();
       return;
     }
     // TODO: Change code below to process the `response` object:
-    console.log(JSON.stringify(response, null, 2));
+    // console.log(JSON.stringify(response, null, 2));
+    console.log("Response from getFromSpreadSheet:",response);
   });
 };
 
