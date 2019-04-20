@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <title>rss-app</title>
+</head>
+<body>
+    <h3 style="text-align: center" id="keywordHeader"></h3>
+    <div id="feeds"></div>
+</body>
+<script>
+$(document).ready(()=>{
+    showFeeds();
+})
+
+function getNewsFeeds(){
+    var responseData;
+    $.ajax({
+        type:'GET',
+        url:'https://sheets.googleapis.com/v4/spreadsheets/1oyewdNqXKzxNxbKmqbFGqcq01GkEwtmRv1YzqiBHLPM/values/googleNews!D4:23?valueRenderOption=FORMATTED_VALUE&dateTimeRenderOption=FORMATTED_STRING&key=AIzaSyCaEv_cYviHuZ2NiPbD8kOI1iLtiRBoe5c',
+        dataType:'json',
+        async:false,
+        success:(data)=>{
+            responseData=data;
+                console.log('Data',data);
+        }
+    })
+return JSON.stringify(responseData);
+}
+
+function showFeeds(){
+    let newsObject = JSON.parse(getNewsFeeds());
+    document.getElementById("keywordHeader").innerHTML="Pune News Headlines";
+    let divEl= document.getElementById('feeds');
+    let ul = document.createElement("ul");
+    let responseKeysArray = Object.keys(newsObject);
+    let newsItemsArray=Object.keys(newsObject['values']);
+    for(item in newsItemsArray){
+        var liEl = document.createElement('li');
+        let liElText = document.createTextNode(newsObject['values'][item][0]);
+        // console.log(newsObject['values'][item][0]);
+        liEl.appendChild(liElText);
+        ul.appendChild(liEl);
+    }
+    divEl.appendChild(ul);
+}
+</script>
+</html>
