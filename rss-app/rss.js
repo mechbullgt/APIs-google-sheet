@@ -24,14 +24,11 @@ function prepareReturnRequest(){
             let request = {
                 // The ID of the spreadsheet to retrieve data from.
                 spreadsheetId: sId,  // TODO: Update placeholder value.
-            
                 // The A1 notation of the values to retrieve.
                 range: sRange,  // TODO: Update placeholder value.
-            
                 // How values should be represented in the output.
                 // The default render option is ValueRenderOption.FORMATTED_VALUE.
                 valueRenderOption: sValueRenderOption,  // TODO: Update placeholder value.
-            
                 // How dates, times, and durations should be represented in the output.
                 // This is ignored if value_render_option is
                 // FORMATTED_VALUE.

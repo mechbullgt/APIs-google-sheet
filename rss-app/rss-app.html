@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-    <title>rss-app</title>
+    <title>rss-news-app</title>
 </head>
 <body>
-    <h3 style="text-align: center" id="keywordHeader"></h3>
+    <h3 style="text-align: left;margin: 10px" id="keywordHeader"></h3>
     <div id="feeds"></div>
 </body>
 <script>
@@ -40,9 +40,20 @@ function showFeeds(){
     let newsItemsArray=Object.keys(newsObject['values']);
     for(item in newsItemsArray){
         var liEl = document.createElement('li');
-        let liElText = document.createTextNode(newsObject['values'][item][0]);
-        // console.log(newsObject['values'][item][0]);
-        liEl.appendChild(liElText);
+        var anchor = document.createElement("a");
+        let text = newsObject['values'][item][0];
+        let link = newsObject['values'][item][2];
+        let textNode = document.createTextNode(text);
+        let hrefAttr = document.createAttribute("href");
+        hrefAttr.value=link;
+        let targetAttr = document.createAttribute("target");
+        targetAttr.value="_blank";
+        // let liElInnerHtml = liEl.innerHTML;
+        // liElInnerHtml=text.link(link);
+        anchor.setAttributeNode(hrefAttr);
+        anchor.setAttributeNode(targetAttr);
+        anchor.appendChild(textNode)
+        liEl.appendChild(anchor);
         ul.appendChild(liEl);
     }
     divEl.appendChild(ul);
