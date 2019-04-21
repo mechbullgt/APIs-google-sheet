@@ -56,8 +56,17 @@ function authorize(callback) {
     //   'https://www.googleapis.com/auth/drive.readonly'
     //   'https://www.googleapis.com/auth/spreadsheets'
     //   'https://www.googleapis.com/auth/spreadsheets.readonly'
-    var authClient = 'https://www.googleapis.com/auth/spreadsheets.readonly';
-  
+
+    /**
+     * For read only operations below URL is functional
+     */
+    // var authClient = 'https://www.googleapis.com/auth/spreadsheets.readonly';
+
+    /**
+     * Attempt to get read-write functionality
+     */
+    var authClient = 'https://www.googleapis.com/auth/spreadsheets';
+
     if (authClient == null) {
       console.log('authentication failed');
       return;
@@ -65,6 +74,9 @@ function authorize(callback) {
     callback(authClient);
   }
 
+/**
+ * Method to read a range from the spreadsheet.
+ */
 function getFromSpreadSheet () {
 let request = prepareReturnRequest();
   sheets.spreadsheets.values.get(request, function(err, response) {
@@ -77,6 +89,13 @@ let request = prepareReturnRequest();
     console.log("Response from getFromSpreadSheet:",response);
   });
 };
+
+/**
+ * Method to write the keyword to the spread sheet.
+ */
+function writeKeywordToSpreadsheet(keyword){
+
+}
 
 function isEmpty(obj){
     let keys = Object.keys(obj)
