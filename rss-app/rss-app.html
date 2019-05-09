@@ -35,7 +35,7 @@ return JSON.stringify(responseData);
 
 function showFeeds(){
     let newsObject = JSON.parse(getNewsFeeds());
-    document.getElementById("keywordHeader").innerHTML="Chhattisgarh Times";
+    document.getElementById("keywordHeader").innerHTML="Pune Times";
     let divEl= document.getElementById('feeds');
     let ul = document.createElement("ul");
     let responseKeysArray = Object.keys(newsObject);
