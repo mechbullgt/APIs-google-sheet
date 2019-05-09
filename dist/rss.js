@@ -17,7 +17,7 @@ function readSecrets(){
 
 function prepareReturnRequest(){
     console.log('Preparing Request Body');
-    const requiredSecrets = require('./topsecrets.json.js');
+    const requiredSecrets = require('./topsecrets.json.js.js');
     if(isEmpty(!requiredSecrets)){
         try{
             const {sId,sRange,sValueRenderOption,sDateTimeRenderOption,sAPIKey } = requiredSecrets;
