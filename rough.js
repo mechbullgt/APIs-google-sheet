@@ -1,0 +1,1 @@
+GET https://sheets.googleapis.com/v4/spreadsheets/1oyewdNqXKzxNxbKmqbFGqcq01GkEwtmRv1YzqiBHLPM/values/googleNews!D4:F24?valueRenderOption=FORMATTED_VALUE&dateTimeRenderOption=FORMATTED_STRING&key=AIzaSyCaEv_cYviHuZ2NiPbD8kOI1iLtiRBoe5c HTTP/1.1
