@@ -1,1 +1,8 @@
-GET https://sheets.googleapis.com/v4/spreadsheets/1oyewdNqXKzxNxbKmqbFGqcq01GkEwtmRv1YzqiBHLPM/values/googleNews!D4:F24?valueRenderOption=FORMATTED_VALUE&dateTimeRenderOption=FORMATTED_STRING&key=AIzaSyCaEv_cYviHuZ2NiPbD8kOI1iLtiRBoe5c HTTP/1.1
+let a = ["11 May 2018","10 May 2018"];
+
+function x (a){
+    let y = (new Date(a).getTime());
+    return y;
+}
+
+console.log('x(a) :', x(a));

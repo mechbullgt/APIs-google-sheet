@@ -39,7 +39,13 @@ function showFeeds(){
     let divEl= document.getElementById('feeds');
     let ul = document.createElement("ul");
     let responseKeysArray = Object.keys(newsObject);
-    let newsItemsArray=Object.keys(newsObject['values']);
+    let newsItemsArray = newsObject['values'];
+    console.log('newsItemsArray :', newsItemsArray);
+    newsItemsArray.sort(function (a, b) {
+    return (new Date(b[1]) - new Date(a[1]));
+    });
+    console.log('newsItemsArray :', newsItemsArray);
+    // let newsItemsArrayKeys=Object.keys(newsObject['values']);
     for(item in newsItemsArray){
         var liEl = document.createElement('li');
         var iEl = document.createElement('i');
