@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <link rel="stylesheet" href="rss-style.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>rss-news-app</title>
+</head>
+
+<body>
+    <h2 style="text-align: left;margin: 10px 0 0 36px" id="keywordHeader"></h2>
+    <hr>
+    <div id="feeds"></div>
+    <script>
+        $(document).ready(() => {
+            showFeeds();
+        })
+
+        function getNewsFeeds() {
+            var responseData;
+            $.ajax({
+                type: 'GET',
+                url: 'https://sheets.googleapis.com/v4/spreadsheets/1oyewdNqXKzxNxbKmqbFGqcq01GkEwtmRv1YzqiBHLPM/values/googleNews!F4:H24?valueRenderOption=FORMATTED_VALUE&dateTimeRenderOption=FORMATTED_STRING&key=AIzaSyCaEv_cYviHuZ2NiPbD8kOI1iLtiRBoe5c',
+                dataType: 'json',
+                async: false,
+                success: (data) => {
+                    responseData = data;
+                    console.log('Data', data);
+                }
+            })
+            return JSON.stringify(responseData);
+        }
+
+        function showFeeds() {
+            let newsObject = JSON.parse(getNewsFeeds());
+            document.getElementById("keywordHeader").innerHTML = "Pune News";
+            let divEl = document.getElementById('feeds');
+            let ul = document.createElement("ul");
+            let responseKeysArray = Object.keys(newsObject);
+            let newsItemsArray = newsObject['values'];
+            console.log('newsItemsArray :', newsItemsArray);
+            newsItemsArray.sort(function (a, b) {
+                return (new Date(b[1]) - new Date(a[1]));
+            });
+            console.log('newsItemsArray :', newsItemsArray);
+            for (item in newsItemsArray) {
+                var liEl = document.createElement('li');
+                var iEl = document.createElement('i');
+                // iEl.className="fa fa-newspaper-o";
+                var anchor = document.createElement("a");
+                let text = newsObject['values'][item][0];
+                let itemDate = newsObject['values'][item][1];
+                let link = newsObject['values'][item][2];
+                let itemText = itemDate + "<hr>" + text;
+                let hrefAttr = document.createAttribute("href");
+                hrefAttr.value = link;
+                let targetAttr = document.createAttribute("target");
+                targetAttr.value = "_blank";
+                anchor.setAttributeNode(hrefAttr);
+                anchor.setAttributeNode(targetAttr);
+                anchor.innerHTML = itemText;
+                anchor.appendChild(iEl);
+                liEl.appendChild(anchor);
+                ul.appendChild(liEl);
+            }
+            divEl.appendChild(ul);
+        }
+    </script>
+
+    <script>
+        function makeApiCall() {
+            let sampleObject = {
+                    "values": [
+                        [
+                            9630323535
+                        ]
+                    ]
+            };
+            var params = {
+                // The ID of the spreadsheet to update.
+                spreadsheetId: '1oyewdNqXKzxNxbKmqbFGqcq01GkEwtmRv1YzqiBHLPM',  // TODO: Update placeholder value.
+
+                // The A1 notation of the values to update.
+                range: 'sheet1!A1',  // TODO: Update placeholder value.
+
+                // How the input data should be interpreted.
+                valueInputOption: 'USER_ENTERED',  // TODO: Update placeholder value.
+            };
+
+            var valueRangeBody = sampleObject;
+
+            var request = gapi.client.sheets.spreadsheets.values.update(params, valueRangeBody);
+            request.then(function (response) {
+                // TODO: Change code below to process the `response` object:
+                console.log(response.result);
+            }, function (reason) {
+                console.error('error: ' + reason.result.error.message);
+            });
+        }
+
+        function initClient() {
+            var API_KEY = 'AIzaSyCaEv_cYviHuZ2NiPbD8kOI1iLtiRBoe5c';  // TODO: Update placeholder with desired API key.
+
+            var CLIENT_ID = '289938948450-99pkrsj65tvub80eegciglpdj29rcucc.apps.googleusercontent.com';  // TODO: Update placeholder with desired client ID.
+
+            // TODO: Authorize using one of the following scopes:
+            //   'https://www.googleapis.com/auth/drive'
+            //   'https://www.googleapis.com/auth/drive.file'
+            //   'https://www.googleapis.com/auth/spreadsheets'
+            var SCOPE = 'https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive';
+
+            gapi.client.init({
+                'apiKey': API_KEY,
+                'clientId': CLIENT_ID,
+                'scope': SCOPE,
+                'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+            }).then(function () {
+                gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
+                updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+            });
+        }
+
+        function handleClientLoad() {
+            gapi.load('client:auth2', initClient);
+        }
+
+        function updateSignInStatus(isSignedIn) {
+            if (isSignedIn) {
+                makeApiCall();
+            }
+        }
+
+        function handleSignInClick(event) {
+            gapi.auth2.getAuthInstance().signIn();
+        }
+
+        function handleSignOutClick(event) {
+            gapi.auth2.getAuthInstance().signOut();
+        }
+    </script>
+    <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+        </script>
+    <button id="signin-button" onclick="handleSignInClick()">Sign in</button>
+    <button id="signout-button" onclick="handleSignOutClick()">Sign out</button>
+</body>
+
+</html>
