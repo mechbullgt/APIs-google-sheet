@@ -92,7 +92,8 @@
               function(err) { console.error("Error loading GAPI client for API", err); });
   }
 
-  let writeObject = {};
+
+  let writeObject = {"values":[[]]};
   writeObject['values'][0][0]="Custom Object";
 
   // Make sure the client is loaded and sign-in is complete before calling this method.
