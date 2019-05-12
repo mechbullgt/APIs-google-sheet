@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,64 +11,65 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>rss-news-app</title>
 </head>
+
 <body>
     <h2 style="text-align: left;margin: 10px 0 0 36px" id="keywordHeader"></h2>
     <hr>
     <div id="feeds"></div>
 </body>
 <script>
-$(document).ready(()=>{
-    showFeeds();
-})
-
-function getNewsFeeds(){
-    var responseData;
-    $.ajax({
-        type:'GET',
-        url:'https://sheets.googleapis.com/v4/spreadsheets/1oyewdNqXKzxNxbKmqbFGqcq01GkEwtmRv1YzqiBHLPM/values/googleNews!F4:H24?valueRenderOption=FORMATTED_VALUE&dateTimeRenderOption=FORMATTED_STRING&key=AIzaSyCaEv_cYviHuZ2NiPbD8kOI1iLtiRBoe5c',
-        dataType:'json',
-        async:false,
-        success:(data)=>{
-            responseData=data;
-                console.log('Data',data);
-        }
+    $(document).ready(() => {
+        showFeeds();
     })
-return JSON.stringify(responseData);
-}
 
-function showFeeds(){
-    let newsObject = JSON.parse(getNewsFeeds());
-    document.getElementById("keywordHeader").innerHTML="Pune News";
-    let divEl= document.getElementById('feeds');
-    let ul = document.createElement("ul");
-    let responseKeysArray = Object.keys(newsObject);
-    let newsItemsArray = newsObject['values'];
-    console.log('newsItemsArray :', newsItemsArray);
-    newsItemsArray.sort(function (a, b) {
-    return (new Date(b[1]) - new Date(a[1]));
-    });
-    console.log('newsItemsArray :', newsItemsArray);
-    for(item in newsItemsArray){
-        var liEl = document.createElement('li');
-        var iEl = document.createElement('i');
-        // iEl.className="fa fa-newspaper-o";
-        var anchor = document.createElement("a");
-        let text = newsObject['values'][item][0];
-        let itemDate = newsObject['values'][item][1];
-        let link = newsObject['values'][item][2];
-        let itemText = itemDate+"<hr>"+text;
-        let hrefAttr = document.createAttribute("href");
-        hrefAttr.value=link;
-        let targetAttr = document.createAttribute("target");
-        targetAttr.value="_blank";
-        anchor.setAttributeNode(hrefAttr);
-        anchor.setAttributeNode(targetAttr);
-        anchor.innerHTML=itemText;
-        anchor.appendChild(iEl);
-        liEl.appendChild(anchor);
-        ul.appendChild(liEl);
+    function getNewsFeeds() {
+        var responseData;
+        $.ajax({
+            type: 'GET',
+            url: 'https://sheets.googleapis.com/v4/spreadsheets/1oyewdNqXKzxNxbKmqbFGqcq01GkEwtmRv1YzqiBHLPM/values/googleNews!F4:H24?valueRenderOption=FORMATTED_VALUE&dateTimeRenderOption=FORMATTED_STRING&key=AIzaSyCaEv_cYviHuZ2NiPbD8kOI1iLtiRBoe5c',
+            dataType: 'json',
+            async: false,
+            success: (data) => {
+                responseData = data;
+                console.log('Data', data);
+            }
+        })
+        return JSON.stringify(responseData);
     }
-    divEl.appendChild(ul);
-}
+
+    function showFeeds() {
+        let newsObject = JSON.parse(getNewsFeeds());
+        document.getElementById("keywordHeader").innerHTML = "Pune News";
+        let divEl = document.getElementById('feeds');
+        let ul = document.createElement("ul");
+        let responseKeysArray = Object.keys(newsObject);
+        let newsItemsArray = newsObject['values'];
+        console.log('newsItemsArray :', newsItemsArray);
+        newsItemsArray.sort(function (a, b) {
+            return (new Date(b[1]) - new Date(a[1]));
+        });
+        console.log('newsItemsArray :', newsItemsArray);
+        for (item in newsItemsArray) {
+            var liEl = document.createElement('li');
+            var iEl = document.createElement('i');
+            // iEl.className="fa fa-newspaper-o";
+            var anchor = document.createElement("a");
+            let text = newsObject['values'][item][0];
+            let itemDate = newsObject['values'][item][1];
+            let link = newsObject['values'][item][2];
+            let itemText = itemDate + "<hr>" + text;
+            let hrefAttr = document.createAttribute("href");
+            hrefAttr.value = link;
+            let targetAttr = document.createAttribute("target");
+            targetAttr.value = "_blank";
+            anchor.setAttributeNode(hrefAttr);
+            anchor.setAttributeNode(targetAttr);
+            anchor.innerHTML = itemText;
+            anchor.appendChild(iEl);
+            liEl.appendChild(anchor);
+            ul.appendChild(liEl);
+        }
+        divEl.appendChild(ul);
+    }
 </script>
 </html>
