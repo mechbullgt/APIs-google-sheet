@@ -91,19 +91,17 @@
         .then(function() { console.log("GAPI client loaded for API"); },
               function(err) { console.error("Error loading GAPI client for API", err); });
   }
+
+  let writeObject = {};
+  writeObject['values'][0][0]="Custom Object";
+
   // Make sure the client is loaded and sign-in is complete before calling this method.
   function execute() {
     return gapi.client.sheets.spreadsheets.values.update({
       "spreadsheetId": "1oyewdNqXKzxNxbKmqbFGqcq01GkEwtmRv1YzqiBHLPM",
       "range": "sheet1!A1",
       "valueInputOption": "USER_ENTERED",
-      "resource": {
-        "values": [
-          [
-            "Success"
-          ]
-        ]
-      }
+      "resource": writeObject
     })
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
